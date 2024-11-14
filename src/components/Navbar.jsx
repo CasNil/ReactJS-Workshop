@@ -1,51 +1,72 @@
 import React from "react";
 
 const Navbar = () => {
-    const navLinks = [
-        { id: 1, name: "Login", href: "#"},
-        { id: 2, name: "Sign Up", href: "#"},
-        { id: 3, name: "About", href: "#"}
-    ];
+  const navLinks = [
+    { id: 1, name: "Login", href: "#", alertMessage: "You are now logged in!" },
+    {
+      id: 2,
+      name: "Sign Up",
+      href: "#",
+      alertMessage: "You will now be signed up!",
+    },
+    {
+      id: 3,
+      name: "About",
+      href: "#",
+      alertMessage: "This is my website where I post products for sale.",
+    },
+  ];
 
-    const renderNavLinks = () => {
-
-    const listItems = navLinks.map( (link)=> {
-    const liElement = <li className="nav-item">
-        <a className="nav-link" href={link.href}>
-        {link.name}
-        </a>
-    </li>
-    return liElement
-    });
-    return listItems;
-    };
-
-    return (
-        <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "black"}}>
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            <span style={{ backgroundColor: "red", color: "white",padding: "5px 15px",  fontWeight: "bold"}}>LEXICON</span>
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+  const renderNavLinks = () => {
+    return navLinks.map((link) => {
+      return (
+        <li key={link.id} className="nav-item">
+          <a
+            className="nav-link"
+            href={link.href}
+            onClick={() => alert(link.alertMessage)}
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-            {
-              renderNavLinks()
-            }           
-            </ul>
-          </div>
+            {link.name}
+          </a>
+        </li>
+      );
+    });
+  };
+
+  return (
+    <nav
+      className="navbar navbar-expand-lg navbar-dark"
+      style={{ backgroundColor: "black" }}
+    >
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          <span
+            style={{
+              backgroundColor: "red",
+              color: "white",
+              padding: "5px 15px",
+              fontWeight: "bold",
+            }}
+          >
+            LEXICON
+          </span>
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">{renderNavLinks()}</ul>
         </div>
-      </nav>
-    );
+      </div>
+    </nav>
+  );
 };
 export default Navbar;
